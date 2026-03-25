@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PinReady Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial;
+      background: #0b0714;
+      color: white;
+      padding: 20px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+    }
+    button {
+      background: #a855f7;
+      color: white;
+      font-weight: bold;
+    }
+    .card {
+      background: #1a1325;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 15px;
+    }
+  </style>
+</head><body><h2>🚀 PinReady Pro</h2><input id="product" placeholder="Paste product name or Amazon link"><input id="benefit" placeholder="Main benefit (optional)"><input id="audience" placeholder="Target audience (optional)"><button onclick="generate()">Generate Pin</button>
+
+<div id="output"></div><script>
+function generate() {
+  let product = document.getElementById("product").value;
+  let benefit = document.getElementById("benefit").value || "making life easier";
+  let audience = document.getElementById("audience").value || "people";
+
+  let titles = [
+    `Why Everyone Is Buying ${product}`,
+    `${product} That Makes ${benefit} Easy`,
+    `This ${product} Is Trending Right Now`
+  ];
+
+  let description = `${product} is a great find for ${benefit}. Perfect for ${audience} who want something simple and effective. The creator really picked a good one — no wonder it’s trending.`;
+
+  let output = `
+  <div class="card"><b>Titles:</b><br>${titles.join("<br>")}</div>
+  <div class="card"><b>Description:</b><br>${description}</div>
+  `;
+
+  document.getElementById("output").innerHTML = output;
+}
+</script></body>
+  </html>
