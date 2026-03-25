@@ -1,39 +1,25 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PinReady Pro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial;
-      background: #0b0714;
-      color: white;
-      padding: 20px;
-    }
-    input, textarea, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-    }
-    button {
-      background: #a855f7;
-      color: white;
-      font-weight: bold;
-    }
-    .card {
-      background: #1a1325;
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 15px;
-    }
-  </style>
-</head><body><h2>🚀 PinReady Pro</h2><input id="product" placeholder="Paste product name or Amazon link"><input id="benefit" placeholder="Main benefit (optional)"><input id="audience" placeholder="Target audience (optional)"><button onclick="generate()">Generate Pin</button>
+<meta charset="UTF-8">
+<title>PinReady Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { font-family: Arial; background:#0b0714; color:white; padding:20px; }
+input, textarea, button { width:100%; margin-top:10px; padding:12px; border-radius:10px; border:none; }
+button { background:#a855f7; color:white; font-weight:bold; }
+.card { background:#1a1325; padding:15px; margin-top:15px; border-radius:15px; }
+</style>
+</head><body><h2>🚀 PinReady Pro (PRO)</h2><input id="product" placeholder="Paste product name or Amazon link">
+<input id="benefit" placeholder="Main benefit (optional)">
+<input id="audience" placeholder="Target audience (optional)"><button onclick="generate()">Generate Pin</button>
 
 <div id="output"></div><script>
+function cleanProduct(p){
+  return p.replace("https://","").replace("www.","");
+}
+
 function generate() {
-  let product = document.getElementById("product").value;
+  let product = cleanProduct(document.getElementById("product").value);
   let benefit = document.getElementById("benefit").value || "making life easier";
   let audience = document.getElementById("audience").value || "people";
 
@@ -43,14 +29,34 @@ function generate() {
     `This ${product} Is Trending Right Now`
   ];
 
-  let description = `${product} is a great find for ${benefit}. Perfect for ${audience} who want something simple and effective. The creator really picked a good one — no wonder it’s trending.`;
+  let hooks = [
+    "this made my life easier",
+    "amazon made me buy this",
+    "I didn’t expect this to work so well"
+  ];
+
+  let keywords = `${product}, amazon finds, trending products, must have`;
+
+  let boards = [
+    "Amazon Finds",
+    "Pinterest Favorites",
+    "Best Products"
+  ];
+
+  let alt = `${product} shown in a lifestyle setting for ${benefit}`;
+
+  let description = `${product} is honestly one of those finds that just makes ${benefit} easier. Perfect for ${audience} who want something simple but effective. The creator really picked a good one here — it actually makes sense why people keep saving it.`;
 
   let output = `
   <div class="card"><b>Titles:</b><br>${titles.join("<br>")}</div>
   <div class="card"><b>Description:</b><br>${description}</div>
+  <div class="card"><b>Hooks:</b><br>${hooks.join("<br>")}</div>
+  <div class="card"><b>SEO Keywords:</b><br>${keywords}</div>
+  <div class="card"><b>Board Names:</b><br>${boards.join("<br>")}</div>
+  <div class="card"><b>Alt Text:</b><br>${alt}</div>
   `;
 
   document.getElementById("output").innerHTML = output;
 }
 </script></body>
-  </html>
+</html>
