@@ -19,7 +19,11 @@ function cleanProduct(p){
 }
 
 function generate() {
-  let product = cleanProduct(document.getElementById("product").value);
+  let raw = document.getElementById("product").value;
+
+let product = raw.includes("http")
+  ? "Trending Amazon Find"
+  : raw;
   let benefit = document.getElementById("benefit").value || "making life easier";
   let audience = document.getElementById("audience").value || "people";
 
